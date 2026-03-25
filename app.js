@@ -342,6 +342,87 @@ function renderProfile() {
   `;
 }
 
+function renderTasteMatch() {
+  return `
+    <div class="container">
+      <div class="tm-hero">
+        <div class="tm-badge">✨ Powered by Forkd AI</div>
+        <h2>Taste <em>Match</em></h2>
+        <p>Descubre cuánto coincides gastronómicamente con otros foodies y encuentra recomendaciones basadas en gustos compartidos.</p>
+      </div>
+
+      ${TASTE_PROFILES.map(tp => {
+        const commonRestaurants = tp.commonVisited.map(id => getRestaurant(id)).filter(Boolean);
+        const recRestaurant = tp.recommendation ? getRestaurant(tp.recommendation.restaurantId) : null;
+        const matchColor = tp.match >= 85 ? 'var(--accent)' : tp.match >= 70 ? 'var(--green)' : 'var(--blue)';
+        const circumference = 2 * Math.PI * 28;
+        const offset = circumference - (tp.match / 100) * circumference;
+
+        return `
+          <div class="tm-card">
+            <div class="tm-card-header">
+              <div class="tm-avatar" style="background: linear-gradient(135deg, ${matchColor}22, ${matchColor}11); color: ${matchColor}">
+                <div class="tm-avatar-ring" style="border-top-color: ${matchColor}; border-right-color: ${matchColor}"></div>
+                ${getInitials(tp.user)}
+              </div>
+              <div class="tm-user-info">
+                <div class="tm-user-name">${tp.user}</div>
+                <div class="tm-user-handle">${tp.username}</div>
+                <div class="tm-traits">
+                  ${tp.traits.map(t => `<span class="tm-trait">${t}</span>`).join('')}
+                </div>
+              </div>
+              <div class="tm-match-score">
+                <div class="tm-match-circle" style="color: ${matchColor}">
+                  <svg viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="28" stroke="rgba(255,255,255,0.05)" />
+                    <circle cx="32" cy="32" r="28" stroke="${matchColor}" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" />
+                  </svg>
+                  ${tp.match}%
+                </div>
+                <div class="tm-match-label">Match</div>
+              </div>
+            </div>
+            <div class="tm-card-body">
+              ${commonRestaurants.length > 0 ? `
+                <div class="tm-section-label">Restaurantes en común</div>
+                <div class="tm-common">
+                  ${commonRestaurants.map(r => `
+                    <div class="tm-common-item" onclick="openModal(${r.id})">
+                      <div class="tm-common-thumb"><img src="${r.image}" alt="${r.name}" loading="lazy" /></div>
+                      <span class="tm-common-name">${r.name}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+
+              <div class="tm-ai-insight">
+                <div class="tm-ai-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M10 21h4"/></svg>
+                  Análisis Forkd AI
+                </div>
+                <div class="tm-ai-text">${tp.aiInsight}</div>
+              </div>
+
+              ${recRestaurant ? `
+                <div class="tm-section-label">Recomendación para ti</div>
+                <div class="tm-recommendation" onclick="openModal(${recRestaurant.id})">
+                  <div class="tm-rec-thumb"><img src="${recRestaurant.image}" alt="${recRestaurant.name}" loading="lazy" /></div>
+                  <div>
+                    <div class="tm-rec-label">Basado en ${tp.user}</div>
+                    <div class="tm-rec-name">${recRestaurant.name} · ${recRestaurant.city}</div>
+                    <div class="tm-rec-reason">${tp.recommendation.reason}</div>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
 // ─── Modal ───
 function openModal(id) {
   const r = getRestaurant(id);
@@ -462,6 +543,7 @@ function renderCurrentPage() {
     case 'home': content.innerHTML = renderHome(); break;
     case 'restaurants': content.innerHTML = renderRestaurants(); break;
     case 'lists': content.innerHTML = renderLists(); break;
+    case 'tastematch': content.innerHTML = renderTasteMatch(); break;
     case 'profile': content.innerHTML = renderProfile(); break;
   }
 }

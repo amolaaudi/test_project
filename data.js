@@ -309,6 +309,69 @@ const USER_PROFILE = {
   ratings: { 1: 5, 2: 5, 3: 5, 4: 4, 8: 4, 9: 4, 11: 4, 12: 4 }
 };
 
+const TASTE_PROFILES = [
+  {
+    user: "Marina G.",
+    username: "@marinagfoodie",
+    match: 92,
+    commonVisited: [1, 2, 4],
+    commonWishlist: [10],
+    topCuisines: ["Vanguardia Mediterránea", "Tapas Creativas", "Neo-Bistró"],
+    traits: ["Aventurera", "Fine Dining", "Vinos Naturales"],
+    recentPick: { restaurantId: 2, rating: 5, text: "La multiesférica de pesto es magia pura." },
+    aiInsight: "Ambos valoráis la creatividad por encima de la tradición. Marina tiende a restaurantes más avant-garde, pero vuestro solapamiento en mediterráneo contemporáneo es casi total.",
+    recommendation: { restaurantId: 6, reason: "Marina puntuó Quintonil con 5★ y encaja con tu amor por la cocina de autor con raíces locales." }
+  },
+  {
+    user: "Carlos R.",
+    username: "@carlosroca_eats",
+    match: 87,
+    commonVisited: [1, 3, 12],
+    commonWishlist: [5],
+    topCuisines: ["Parrilla Vasca", "Modern Australian BBQ", "Catalana Contemporánea"],
+    traits: ["Carnívoro", "Brasa & Fuego", "Producto Km0"],
+    recentPick: { restaurantId: 12, rating: 4, text: "Brutal experiencia counter. El pulled pork es top 3 mundial." },
+    aiInsight: "Compartís una pasión profunda por el fuego y el producto. Carlos es más purista que tú en técnica, pero coincidís en que el ingrediente manda.",
+    recommendation: { restaurantId: 3, reason: "Si no has probado el txuletón de temporada de invierno en Etxebarri, Carlos dice que es 'otro nivel'." }
+  },
+  {
+    user: "Pablo M.",
+    username: "@pablomfood",
+    match: 78,
+    commonVisited: [2, 8],
+    commonWishlist: [6, 10],
+    topCuisines: ["Vanguardia Mediterránea", "Peruana de Altitudes", "New Nordic"],
+    traits: ["Trotamundos", "Menú Degustación", "Fotografía"],
+    recentPick: { restaurantId: 5, rating: 5, text: "Redzepi sigue siendo un visionario." },
+    aiInsight: "Pablo viaja más que tú por gastronomía, pero cuando coincidís en destino, puntuáis casi idéntico. Tu zona de divergencia: él tolera más la cocina conceptual extrema.",
+    recommendation: { restaurantId: 5, reason: "Pablo insiste en que la temporada de mariscos de Noma es imprescindible. Basándonos en tus gustos, coincidimos." }
+  },
+  {
+    user: "Elena V.",
+    username: "@elenavfoodie",
+    match: 71,
+    commonVisited: [4, 9],
+    commonWishlist: [],
+    topCuisines: ["Tapas Creativas", "Cocina de Mercado", "Mexican Contemporánea"],
+    traits: ["Casual Dining", "Street Food", "Picante"],
+    recentPick: { restaurantId: 4, rating: 5, text: "La aire de patatas bravas es una locura." },
+    aiInsight: "Elena prefiere lo informal y vibrante; tú tiendes al fine dining. Pero en tapas y mercado, habláis el mismo idioma. Buen match para cenas casuales.",
+    recommendation: { restaurantId: 7, reason: "A Elena le encantó Gaggan Anand — su lado divertido y provocador encaja con los gustos que compartís en Tickets." }
+  },
+  {
+    user: "Yuki T.",
+    username: "@yukitaste",
+    match: 65,
+    commonVisited: [11],
+    commonWishlist: [7],
+    topCuisines: ["Innovative Satoyama", "Indian Progressive", "New Nordic"],
+    traits: ["Asia Specialist", "Minimalista", "Umami"],
+    recentPick: { restaurantId: 11, rating: 5, text: "The forest bread alone is worth the visit." },
+    aiInsight: "Yuki es tu puerta a la gastronomía asiática. Sus gustos son más minimalistas, pero coincidís en la valoración de Narisawa. Ideal para descubrir Asia.",
+    recommendation: { restaurantId: 7, reason: "Yuki ha visitado Gaggan 3 veces. Dice que el emoji menú es 'la experiencia más divertida de Asia'. Está en tu wishlist — hazle caso." }
+  }
+];
+
 const FRIENDS_ACTIVITY = [
   { user: "Marina G.", avatar: null, action: "rated", restaurantId: 1, rating: 5, time: "2h ago" },
   { user: "Pablo M.", avatar: null, action: "added to wishlist", restaurantId: 6, time: "4h ago" },
