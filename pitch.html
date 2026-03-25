@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forkd — Pitch Deck</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0b0e;
+      --bg2: #12141a;
+      --bg3: #181a22;
+      --bg4: #222536;
+      --accent: #e8843c;
+      --accent2: #f09550;
+      --accent-soft: rgba(232, 132, 60, 0.10);
+      --accent-glow: rgba(232, 132, 60, 0.20);
+      --green: #40c057;
+      --green-soft: rgba(64, 192, 87, 0.10);
+      --red: #e84057;
+      --blue: #4dabf7;
+      --blue-soft: rgba(77, 171, 247, 0.10);
+      --purple: #b197fc;
+      --purple-soft: rgba(177, 151, 252, 0.10);
+      --yellow: #fcc419;
+      --text: #e8e6e3;
+      --text2: #8b8d97;
+      --text3: #555766;
+      --border: rgba(255,255,255,0.06);
+      --border2: rgba(255,255,255,0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ─── Slide system ─── */
+    .slide {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 8rem;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      bottom: 2rem;
+      left: 8rem;
+      right: 8rem;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .slide-number {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 8rem;
+      font-size: 0.75rem;
+      color: var(--text3);
+      letter-spacing: 2px;
+    }
+
+    .logo-watermark {
+      position: absolute;
+      bottom: 2.2rem;
+      left: 8rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      color: var(--text3);
+    }
+
+    .logo-watermark em { color: var(--accent); font-style: normal; }
+
+    /* ─── Typography ─── */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .subtitle {
+      font-size: 1.35rem;
+      color: var(--text2);
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    em, .highlight { color: var(--accent); font-style: italic; }
+
+    /* ─── Cover ─── */
+    .slide-cover {
+      align-items: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(232,132,60,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 60%, rgba(232,93,117,0.04) 0%, transparent 60%);
+    }
+
+    .slide-cover h1 {
+      font-size: 5.5rem;
+      letter-spacing: -3px;
+    }
+
+    .slide-cover h1 span {
+      font-weight: 400;
+      color: var(--text2);
+    }
+
+    .cover-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 3rem;
+    }
+
+    .cover-logo span { color: var(--text); font-weight: 400; }
+
+    .cover-tagline {
+      font-size: 1.1rem;
+      color: var(--text3);
+      margin-top: 2rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .cover-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 2rem auto;
+    }
+
+    .cover-date {
+      color: var(--text3);
+      font-size: 0.9rem;
+    }
+
+    /* ─── Grids ─── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* ─── Cards ─── */
+    .card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-icon.orange { background: var(--accent-soft); }
+    .card-icon.green { background: var(--green-soft); }
+    .card-icon.blue { background: var(--blue-soft); }
+    .card-icon.purple { background: var(--purple-soft); }
+    .card-icon.red { background: rgba(232, 64, 87, 0.10); }
+
+    .card h3 { font-size: 1.15rem; }
+
+    .card p {
+      color: var(--text2);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    /* ─── Stats ─── */
+    .stat-block {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text2);
+      margin-top: 0.5rem;
+    }
+
+    .stat-sublabel {
+      font-size: 0.75rem;
+      color: var(--text3);
+      margin-top: 0.25rem;
+    }
+
+    /* ─── Comparison table ─── */
+    .comparison-table {
+      width: 100%;
+      margin-top: 2rem;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-table th {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text3);
+      font-weight: 600;
+    }
+
+    .comparison-table td {
+      font-size: 0.92rem;
+      color: var(--text2);
+    }
+
+    .comparison-table td:first-child {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .comparison-table .col-forkd {
+      background: rgba(232, 132, 60, 0.04);
+      color: var(--accent) !important;
+      font-weight: 600 !important;
+      border-left: 2px solid var(--accent);
+    }
+
+    .comparison-table thead .col-forkd {
+      color: var(--accent) !important;
+    }
+
+    .check { color: var(--green); font-weight: 700; }
+    .cross { color: var(--text3); }
+
+    /* ─── Timeline ─── */
+    .timeline {
+      margin-top: 2.5rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--purple));
+      border-radius: 1px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 2.5rem 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 3px solid var(--accent);
+    }
+
+    .timeline-item.future::before {
+      border-color: var(--text3);
+      background: var(--bg3);
+    }
+
+    .timeline-phase {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-item.future .timeline-phase { color: var(--text3); }
+
+    .timeline-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-desc {
+      color: var(--text2);
+      font-size: 0.88rem;
+    }
+
+    /* ─── Quote ─── */
+    .quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--text2);
+      line-height: 1.5;
+      position: relative;
+      padding-left: 2rem;
+      border-left: 3px solid var(--accent);
+      margin: 2rem 0;
+      max-width: 700px;
+    }
+
+    /* ─── Revenue model ─── */
+    .revenue-bar {
+      display: flex;
+      height: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .revenue-bar div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .revenue-legend {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .revenue-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text2);
+    }
+
+    .revenue-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* ─── Persona ─── */
+    .persona-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .persona-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .persona-name {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .persona-role {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .persona-text {
+      color: var(--text2);
+      font-size: 0.88rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* ─── CTA slide ─── */
+    .slide-cta {
+      text-align: center;
+      align-items: center;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(232,132,60,0.08) 0%, transparent 60%);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .cta-btn {
+      padding: 0.85rem 2.5rem;
+      border-radius: 100px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: 0.2s ease;
+      border: none;
+    }
+
+    .cta-btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .cta-btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border2);
+    }
+
+    .contact-info {
+      margin-top: 3rem;
+      color: var(--text3);
+      font-size: 0.9rem;
+    }
+
+    .contact-info a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ─── Print / PDF ─── */
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .slide {
+        min-height: 100vh;
+        page-break-after: always;
+        page-break-inside: avoid;
+      }
+      .slide::before { display: none; }
+      .no-print { display: none; }
+    }
+
+    /* ─── Print Button ─── */
+    .print-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9999;
+      padding: 0.75rem 1.75rem;
+      border-radius: 100px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(232,132,60,0.35);
+      transition: 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .print-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(232,132,60,0.45); }
+
+    @media print { .print-btn { display: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- Print to PDF button -->
+  <button class="print-btn no-print" onclick="window.print()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Exportar PDF
+  </button>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 1 · Cover -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide slide-cover">
+    <div class="cover-logo">Fork<span>d</span></div>
+    <h1>El Letterboxd<br><span>de la gastronomía</span></h1>
+    <div class="cover-divider"></div>
+    <p class="subtitle" style="text-align:center; margin: 0 auto;">
+      La red social donde cada comida cuenta una historia.<br>
+      Registra, descubre y comparte experiencias gastronómicas.
+    </p>
+    <p class="cover-tagline">Pitch Deck · 2026</p>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 2 · El Problema -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide">
+    <p class="label">01 · El Problema</p>
+    <h2>Comer bien es fácil.<br><em>Recordarlo</em>, no tanto.</h2>
+    <p class="subtitle">Los amantes de la gastronomía no tienen un espacio propio para documentar, compartir y descubrir experiencias culinarias con profundidad y comunidad.</p>
+
+    <div class="grid-3" style="margin-top: 3rem">
+      <div class="card">
+        <div class="card-icon orange">📋</div>
+        <h3>Reseñas sin alma</h3>
+        <p>Google Reviews y TripAdvisor mezclan turistas con foodies. Las reseñas son genéricas, sin contexto ni comunidad. Un "muy bueno 👍" no ayuda a nadie.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon blue">🔍</div>
+        <h3>Descubrimiento roto</h3>
+        <p>No existe un sistema de recomendación social. ¿Qué restaurantes visitan las personas con gustos similares a los míos? Nadie te lo dice.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon purple">📖</div>
+        <h3>Sin diario personal</h3>
+        <p>No hay manera elegante de llevar un registro de dónde has comido, qué pediste, cómo te sentiste. Los foodies usan Instagram, notas del móvil o... su memoria.</p>
+      </div>
+    </div>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">02 / 11</div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 3 · Oportunidad de mercado -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide">
+    <p class="label">02 · Oportunidad de Mercado</p>
+    <h2>Un mercado de <em>€3.8T</em><br>sin red social propia</h2>
+
+    <div class="grid-4" style="margin-top: 3rem">
+      <div class="stat-block">
+        <div class="stat-number">€3.8T</div>
+        <div class="stat-label">Mercado global de restauración</div>
+        <div class="stat-sublabel">Estimación 2026</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">67%</div>
+        <div class="stat-label">Millennials y Gen Z</div>
+        <div class="stat-sublabel">eligen restaurante por redes sociales</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">2.1B</div>
+        <div class="stat-label">Posts de comida al año</div>
+        <div class="stat-sublabel">en Instagram (estimado)</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Redes sociales dedicadas</div>
+        <div class="stat-sublabel">al foodie como identidad</div>
+      </div>
+    </div>
+
+    <div class="quote" style="margin-top: 3rem">
+      "El cine tiene Letterboxd. La música tiene Spotify. Los libros tienen Goodreads. La gastronomía no tiene nada."
+    </div>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">03 / 11</div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 4 · Nuestra Solución -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide">
+    <p class="label">03 · Nuestra Solución</p>
+    <h2>Forkd: tu identidad<br><em>gastronómica</em></h2>
+    <p class="subtitle">No somos una app de reservas. No somos un directorio. Somos la red social donde tu historia culinaria cobra vida.</p>
+
+    <div class="grid-2" style="margin-top: 2.5rem">
+      <div class="card">
+        <div class="card-icon orange">📔</div>
+        <h3>Diario Gastronómico</h3>
+        <p>Registra cada restaurante visitado con tu rating, notas y fotos. Tu perfil es tu autobiografía culinaria — un mapa visual de todo lo que has vivido en la mesa.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon green">⭐</div>
+        <h3>Ratings con Contexto</h3>
+        <p>Puntúa platos individuales, ambiente, servicio y relación calidad-precio. Reviews de calidad de gente que realmente ama comer, no quejas de turistas.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon blue">📋</div>
+        <h3>Listas Curadas</h3>
+        <p>"Mejores tacos de CDMX", "Cenas románticas en París", "Brasa y fuego". Crea y sigue listas de la comunidad. Descubre a través de la curación colectiva.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon purple">👥</div>
+        <h3>Feed Social</h3>
+        <p>Sigue a foodies con gustos similares. Ve qué visitan, qué puntúan, qué listas crean. Descubrimiento orgánico basado en confianza real, no en algoritmos de pago.</p>
+      </div>
+    </div>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">04 / 11</div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 5 · Diferenciación vs TheFork -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide">
+    <p class="label">04 · Diferenciación</p>
+    <h2>Por qué <em>Forkd</em> no es TheFork</h2>
+    <p class="subtitle">TheFork es una herramienta transaccional. Forkd es una comunidad. Es la diferencia entre un buscador de vuelos y tu álbum de viajes.</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th style="width:30%">Funcionalidad</th>
+          <th>TheFork</th>
+          <th>Google Maps</th>
+          <th>Instagram</th>
+          <th class="col-forkd">Forkd</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Reservas online</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td class="col-forkd">Integración*</td>
+        </tr>
+        <tr>
+          <td>Diario personal</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td>Parcial</td>
+          <td class="col-forkd"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Feed social de amigos</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td class="col-forkd"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Listas curadas</td>
+          <td><span class="cross">✗</span></td>
+          <td>Básico</td>
+          <td><span class="cross">✗</span></td>
+          <td class="col-forkd"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Rating por categorías</td>
+          <td>Solo global</td>
+          <td>Solo global</td>
+          <td><span class="cross">✗</span></td>
+          <td class="col-forkd"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Descubrimiento social</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td>Algoritmo</td>
+          <td class="col-forkd"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Identidad foodie</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td>Mezclada</td>
+          <td class="col-forkd"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Wishlist inteligente</td>
+          <td>Favoritos</td>
+          <td>Guardar</td>
+          <td><span class="cross">✗</span></td>
+          <td class="col-forkd"><span class="check">✓</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="color: var(--text3); font-size: 0.8rem; margin-top: 1rem">* Integración con plataformas de reservas existentes, no competencia directa.</p>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">05 / 11</div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 6 · Target Users -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide">
+    <p class="label">05 · Usuarios Objetivo</p>
+    <h2>¿Para quién es <em>Forkd</em>?</h2>
+
+    <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2.5rem">
+      <div class="persona-card">
+        <div class="persona-avatar" style="background: var(--accent-soft)">👩‍🍳</div>
+        <div>
+          <div class="persona-name">Marina, 29 · Foodie urbana</div>
+          <div class="persona-role">Early Adopter · Barcelona</div>
+          <div class="persona-text">Sale a comer 3-4 veces por semana. Usa Instagram para compartir fotos de comida pero se frustra porque se mezcla con todo lo demás. Quiere un espacio dedicado donde su identidad gastronómica brille. Crea listas para sus amigos cuando le piden recomendaciones.</div>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-avatar" style="background: var(--blue-soft)">🧳</div>
+        <div>
+          <div class="persona-name">Carlos, 35 · Viajero gastronómico</div>
+          <div class="persona-role">Power User · Madrid</div>
+          <div class="persona-text">Planifica sus viajes alrededor de restaurantes. Antes de ir a cualquier ciudad, investiga durante horas. Necesita un lugar centralizado para guardar wishlist por destino, ver qué recomiendan personas de confianza y llevar un diario de sus descubrimientos.</div>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-avatar" style="background: var(--green-soft)">🍷</div>
+        <div>
+          <div class="persona-name">Ana y Pedro, 42 · Pareja sibarita</div>
+          <div class="persona-role">Regular User · Valencia</div>
+          <div class="persona-text">Cada sábado salen a cenar. Han perdido la cuenta de cuántos restaurantes han probado. Quieren recordar ese sitio increíble que visitaron en Oporto hace 2 años, con qué vino maridaron y por qué repitieron. Forkd es su memoria gastronómica compartida.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">06 / 11</div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 7 · Features -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide">
+    <p class="label">06 · Funcionalidades Clave</p>
+    <h2>Más que reviews.<br>Una <em>experiencia</em> completa.</h2>
+
+    <div class="grid-3" style="margin-top: 2.5rem">
+      <div class="card" style="border-top: 2px solid var(--accent)">
+        <h3 style="color: var(--accent)">Core</h3>
+        <ul style="list-style: none; margin-top: 1rem">
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Perfil gastronómico personal</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Diario de visitas con rating</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Reviews con categorías</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Wishlist por destino</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Listas públicas/privadas</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem">✦ Feed social de amigos</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top: 2px solid var(--green)">
+        <h3 style="color: var(--green)">Social</h3>
+        <ul style="list-style: none; margin-top: 1rem">
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Seguir amigos y foodies</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Comentar reviews</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Compartir experiencias</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Retos gastronómicos</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Logros y badges</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem">✦ Stats anuales (Wrapped)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top: 2px solid var(--purple)">
+        <h3 style="color: var(--purple)">Discovery</h3>
+        <ul style="list-style: none; margin-top: 1rem">
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Recomendaciones IA</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ "Taste Match" con amigos</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Mapa interactivo</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Trending por ciudad</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border)">✦ Explorar por cocina/precio</li>
+          <li style="padding: 0.4rem 0; color: var(--text2); font-size: 0.9rem">✦ Integración con reservas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">07 / 11</div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 8 · Revenue Model -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide">
+    <p class="label">07 · Modelo de Negocio</p>
+    <h2>Freemium + B2B:<br><em>doble motor</em> de ingresos</h2>
+
+    <div class="grid-2" style="margin-top: 2.5rem; gap: 3rem">
+      <div>
+        <h3 style="margin-bottom: 1.5rem">Distribución de ingresos proyectada (Año 3)</h3>
+        <div class="revenue-bar">
+          <div style="width: 35%; background: var(--accent)">35%</div>
+          <div style="width: 25%; background: var(--green)">25%</div>
+          <div style="width: 25%; background: var(--purple)">25%</div>
+          <div style="width: 15%; background: var(--blue)">15%</div>
+        </div>
+        <div class="revenue-legend">
+          <div class="revenue-legend-item">
+            <div class="revenue-dot" style="background: var(--accent)"></div>
+            Forkd Pro (suscripción)
+          </div>
+          <div class="revenue-legend-item">
+            <div class="revenue-dot" style="background: var(--green)"></div>
+            Restaurantes (B2B)
+          </div>
+          <div class="revenue-legend-item">
+            <div class="revenue-dot" style="background: var(--purple)"></div>
+            Comisión reservas
+          </div>
+          <div class="revenue-legend-item">
+            <div class="revenue-dot" style="background: var(--blue)"></div>
+            Partnerships
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem">
+        <div class="card" style="padding: 1.25rem">
+          <h3 style="font-size: 1rem">🆓 Free</h3>
+          <p style="font-size: 0.85rem">Diario, reviews, listas, feed social, wishlist. Todo lo esencial sin límites.</p>
+        </div>
+        <div class="card" style="padding: 1.25rem; border-color: var(--accent)">
+          <h3 style="font-size: 1rem; color: var(--accent)">⭐ Pro · €4.99/mes</h3>
+          <p style="font-size: 0.85rem">Stats avanzados, Wrapped anual, filtros premium, exportar diario, badges exclusivos, sin ads.</p>
+        </div>
+        <div class="card" style="padding: 1.25rem; border-color: var(--green)">
+          <h3 style="font-size: 1rem; color: var(--green)">🏪 Restaurantes · desde €49/mes</h3>
+          <p style="font-size: 0.85rem">Dashboard de analytics, responder reviews, badge verificado, menús dinámicos, ofertas a foodies cercanos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">08 / 11</div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 9 · Roadmap -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide">
+    <p class="label">08 · Roadmap</p>
+    <h2>De prototipo a <em>plataforma</em></h2>
+
+    <div class="grid-2" style="margin-top: 2rem; align-items: start">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-phase">Q2 2026 · Ahora</div>
+          <div class="timeline-title">MVP & Beta Privada</div>
+          <div class="timeline-desc">Prototipo funcional, primeros 500 beta testers en Barcelona. Core features: diario, ratings, wishlist, perfil.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-phase">Q3 2026</div>
+          <div class="timeline-title">Social & Listas</div>
+          <div class="timeline-desc">Feed social, seguir usuarios, listas curadas, comentarios. App móvil (iOS + Android). Expansión a Madrid y Valencia.</div>
+        </div>
+        <div class="timeline-item future">
+          <div class="timeline-phase">Q4 2026</div>
+          <div class="timeline-title">Discovery & AI</div>
+          <div class="timeline-desc">Recomendaciones con IA, Taste Match, mapa interactivo. Dashboard B2B para restaurantes. Lanzamiento Forkd Pro.</div>
+        </div>
+        <div class="timeline-item future">
+          <div class="timeline-phase">2027</div>
+          <div class="timeline-title">Escala Internacional</div>
+          <div class="timeline-desc">Expansión europea (Portugal, Francia, Italia). Integración reservas. Forkd Wrapped. Partnerships con guías y festivales.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom: 1rem">
+          <h3>Métricas objetivo (12 meses)</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.25rem">
+            <div>
+              <div style="font-size: 2rem; font-weight: 700; color: var(--accent); font-family: 'Playfair Display', serif">50K</div>
+              <div style="color: var(--text2); font-size: 0.85rem">Usuarios registrados</div>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 700; color: var(--green); font-family: 'Playfair Display', serif">15K</div>
+              <div style="color: var(--text2); font-size: 0.85rem">MAU activos</div>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 700; color: var(--purple); font-family: 'Playfair Display', serif">200K</div>
+              <div style="color: var(--text2); font-size: 0.85rem">Reviews generadas</div>
+            </div>
+            <div>
+              <div style="font-size: 2rem; font-weight: 700; color: var(--blue); font-family: 'Playfair Display', serif">5K+</div>
+              <div style="color: var(--text2); font-size: 0.85rem">Restaurantes indexados</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Inversión buscada</h3>
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent); font-family: 'Playfair Display', serif; margin: 0.5rem 0">€300K</div>
+          <p style="font-size: 0.88rem">Pre-seed para desarrollo de producto, equipo core (4 personas), marketing de lanzamiento y operaciones durante 18 meses.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">09 / 11</div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 10 · Equipo -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide">
+    <p class="label">09 · El Equipo</p>
+    <h2>Construido por <em>foodies</em>,<br>para foodies</h2>
+    <p class="subtitle">Un equipo multidisciplinar que combina tecnología, diseño y una pasión irracional por comer bien.</p>
+
+    <div class="grid-3" style="margin-top: 2.5rem">
+      <div class="card" style="text-align: center">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #e85d75); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem">👨‍💻</div>
+        <h3>CEO & Product</h3>
+        <p style="color: var(--accent); font-size: 0.85rem; margin-bottom: 0.5rem">Co-Founder</p>
+        <p>Visión de producto, estrategia de negocio y growth. Background en startups tech y obsesión por la experiencia de usuario.</p>
+      </div>
+      <div class="card" style="text-align: center">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--purple)); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem">👩‍💻</div>
+        <h3>CTO & Engineering</h3>
+        <p style="color: var(--blue); font-size: 0.85rem; margin-bottom: 0.5rem">Co-Founder</p>
+        <p>Arquitectura técnica, desarrollo full-stack y data. Experiencia en plataformas sociales y sistemas de recomendación.</p>
+      </div>
+      <div class="card" style="text-align: center">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--green), #69db7c); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem">🎨</div>
+        <h3>Design Lead</h3>
+        <p style="color: var(--green); font-size: 0.85rem; margin-bottom: 0.5rem">Head of Design</p>
+        <p>UI/UX, brand identity y experiencia visual. Cree que la estética no es un lujo, es lo que convierte usuarios en comunidad.</p>
+      </div>
+    </div>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">10 / 11</div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SLIDE 11 · CTA / Cierre -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="slide slide-cta">
+    <div class="cover-logo" style="font-size: 2.5rem; margin-bottom: 2rem">Fork<span>d</span></div>
+    <h2>Cada comida merece<br>ser <em>recordada</em></h2>
+    <p class="subtitle" style="text-align: center; margin: 1rem auto 0">
+      Estamos construyendo la comunidad gastronómica que el mundo necesita.<br>
+      ¿Te unes a la mesa?
+    </p>
+
+    <div class="cta-buttons">
+      <button class="cta-btn cta-btn-primary">Ver el Prototipo</button>
+      <button class="cta-btn cta-btn-secondary">Contactar</button>
+    </div>
+
+    <div class="contact-info">
+      <p style="margin-bottom: 0.5rem; font-size: 1rem; color: var(--text2)">Àngel Mola</p>
+      <p>forkd.app · hello@forkd.app</p>
+      <p style="margin-top: 1.5rem; color: var(--text3); font-size: 0.8rem">Pitch Deck · Marzo 2026 · Datos de mercado estimados</p>
+    </div>
+
+    <div class="logo-watermark"><em>Fork</em>d</div>
+    <div class="slide-number">11 / 11</div>
+  </section>
+
+</body>
+</html>
