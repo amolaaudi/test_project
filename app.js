@@ -354,15 +354,16 @@ function renderTasteMatch() {
       ${TASTE_PROFILES.map(tp => {
         const commonRestaurants = tp.commonVisited.map(id => getRestaurant(id)).filter(Boolean);
         const recRestaurant = tp.recommendation ? getRestaurant(tp.recommendation.restaurantId) : null;
-        const matchColor = tp.match >= 85 ? 'var(--accent)' : tp.match >= 70 ? 'var(--green)' : 'var(--blue)';
+        const matchHex = tp.match >= 85 ? '#e8843c' : tp.match >= 70 ? '#40c057' : '#4dabf7';
+        const matchVar = tp.match >= 85 ? 'var(--accent)' : tp.match >= 70 ? 'var(--green)' : 'var(--blue)';
         const circumference = 2 * Math.PI * 28;
         const offset = circumference - (tp.match / 100) * circumference;
 
         return `
           <div class="tm-card">
             <div class="tm-card-header">
-              <div class="tm-avatar" style="background: linear-gradient(135deg, ${matchColor}22, ${matchColor}11); color: ${matchColor}">
-                <div class="tm-avatar-ring" style="border-top-color: ${matchColor}; border-right-color: ${matchColor}"></div>
+              <div class="tm-avatar" style="background: linear-gradient(135deg, ${matchHex}22, ${matchHex}11); color: ${matchVar}">
+                <div class="tm-avatar-ring" style="border-top-color: ${matchVar}; border-right-color: ${matchVar}"></div>
                 ${getInitials(tp.user)}
               </div>
               <div class="tm-user-info">
@@ -373,10 +374,10 @@ function renderTasteMatch() {
                 </div>
               </div>
               <div class="tm-match-score">
-                <div class="tm-match-circle" style="color: ${matchColor}">
+                <div class="tm-match-circle" style="color: ${matchVar}">
                   <svg viewBox="0 0 64 64">
                     <circle cx="32" cy="32" r="28" stroke="rgba(255,255,255,0.05)" />
-                    <circle cx="32" cy="32" r="28" stroke="${matchColor}" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" />
+                    <circle cx="32" cy="32" r="28" stroke="${matchHex}" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" />
                   </svg>
                   ${tp.match}%
                 </div>
