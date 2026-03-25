@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forkd — Tu diario gastronómico</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍴</text></svg>" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-logo" onclick="navigateTo('home')">Fork<span>d</span></div>
+    <div class="nav-links">
+      <button class="nav-link active" data-page="home" onclick="navigateTo('home')">Inicio</button>
+      <button class="nav-link" data-page="restaurants" onclick="navigateTo('restaurants')">Restaurantes</button>
+      <button class="nav-link" data-page="lists" onclick="navigateTo('lists')">Listas</button>
+      <button class="nav-link" data-page="profile" onclick="navigateTo('profile')">Perfil</button>
+    </div>
+    <div class="nav-search">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Buscar restaurantes, ciudades..." oninput="handleSearch(event)" />
+      </div>
+      <div class="nav-avatar" onclick="navigateTo('profile')">ÀM</div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div id="page-content"></div>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal-overlay" class="modal-overlay"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Forkd &copy; 2026 — Hecho con amor y buen gusto. Datos simulados con fines de prototipado.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
